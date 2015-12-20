@@ -1,0 +1,18 @@
+多线程下载原理：
+一：获取网络文件的总长度，然后在Android客户端生成一个与网络文件长度相等的本地文件；
+二：开启N条县城下载文件，计算每条线程负责下载的数据量，公式如下：int block=文件长度%n==0?文件长度/N:文件长度/N+1
+划分线程的任务量：
+0,1,2
+int block=4;
+int start=threadid*block;
+int end = (threadid+1)*block-1;
+
+
+
+RandomAccessFile用于多线程下载存储文件
+
+其中从指定位置写数据，可以使用seek(）方法
+
+可以使用setRequestProperty("range","bytes=0-1000");
+206位分段下载状态码
+
